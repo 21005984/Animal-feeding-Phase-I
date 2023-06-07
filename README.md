@@ -21,7 +21,78 @@
 ### Step 6: Edit their speed values and test to see how it looks. Drag all three animals into the Prefabs folder, choosing “Original Prefab”
 
 ## Program:
+~~~
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
+using System.Threading;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float horizontalInput;
+    public float speed = 10.0f;
+    public float xRange = 10f;
+    public GameObject projectilePrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+}
+~~~
+### MOVEFORWARD
+~~~
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveForward : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float speed = 40.0f;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+}
+~~~
+
 
 ## Output:
 
+![image](https://github.com/21005984/Animal-feeding-Phase-I/assets/94748389/d17ed139-b31f-4163-bccc-b7197c49ea97)
+
+![image](https://github.com/21005984/Animal-feeding-Phase-I/assets/94748389/1a5e947d-ca91-4107-9828-38cddb661ce7)
+
+![image](https://github.com/21005984/Animal-feeding-Phase-I/assets/94748389/bb3c0a72-bfaa-40f2-9ac6-eed4772d9299)
+
+
 ## Result:
+Animal feeding game-Phase-1 using unity is developed.
